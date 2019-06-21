@@ -19,18 +19,20 @@ app.get('/', (req, res) => {
 
 
 
-app.get('/categories', (req, res) => {
-	db.query('SELECT * FROM categories', (err, result)=> {
-		if (err) {
-			console.log('err',err)
-		}else{
-			res.send(result.rows) //results back to client
-			//console.log('results', results.rows) webpage
-		}
-	})
-})//
+// app.get('/categories', (req, res) => {
+// 	db.query('SELECT * FROM categories', (err, result)=> {
+// 		if (err) {
+// 			console.log('err',err)
+// 		}else{
+// 			res.send(result.rows) //results back to client
+// 			//console.log('results', results.rows) webpage
+// 		}
+// 	})
+// })//
 
 app.get('/api/products', require('./controllers/products_get.js'))
+app.get('/api/categories', require('./controllers/categories_get.js'))
+
 // Run
 
 app.listen(3000, () => {
