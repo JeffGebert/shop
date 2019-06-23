@@ -30,7 +30,10 @@ app.get('/', (req, res) => {
 // 	})
 // })//
 
+//API
+
 app.get('/api/products', require('./controllers/products_get.js'))
+app.get('/api/products/:id', require('./controllers/products_getx.js'))
 app.get('/api/categories', require('./controllers/categories_get.js'))
 
 // Run

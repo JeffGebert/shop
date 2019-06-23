@@ -17,6 +17,56 @@ console.log('Hello')
 	//})
 
 	//}
+axios.get('http://localhost:3000/api/productsx').then((res) => {
+	console.log('res', res.data)
+		.catch((error) => {
+			console.log('err',err)
+		})
+	document.addEventListener('click', (e)=>{
+		if(e.target.classList.contains('category')){
+			axios.get(`http://localhost:3000/api/products/${e.target.id}`.then((res) => {
+				console.log('res', res.data)
+				let products = res.data
+				let products_ui = document.getElementById('products')
+
+				//clear the products
+
+				products_ui.inner_html=''
+
+				if (res.data.length) {
+					products.forEach((p) => {
+						products_ui.insertAdjacentHTML('beforeEnd', `<div class="product">
+									<div class="product-image" style="background-image: url('../img/${p.image}')">
+									<i class="far fa-star"></i>
+									</div>
+									<div class="product-extras">
+									<div class="description">
+										<h4>${s.name}</h4>
+										<small>${s.price}</small>
+										</div>
+										<div class="price">
+										<span>$189.99</span>
+										<a href="#" class="button">shop now</a>
+										</div>
+										</div>
+									</div>)
+									`)
+
+
+					})
+				}else{
+					products_ui.innerHTML = 'No products found.'
+				}
+			}).catch((err) => {
+				console.log('err', err)
+			})
+		)}
+	})
+
+
+
+
+
 
 
 
@@ -30,7 +80,7 @@ axios.get('http://localhost:3000/api/products').then((res) => {
 		//let each product in the dom
 		products.forEach((s)=>{
 			il.insertAdjacentHTML('beforeEnd', `<div class="product">
-					<div class="product-image">
+						<div class="product-image" style="background-image: url('../img/${p.image}')">
 						<i class="far fa-star"></i>
 						</div>
 						<div class="product-extras">
@@ -64,7 +114,7 @@ axios.get('http://localhost:3000/api/categories').then((res) => {
 	 let il = document.getElementById('categorylist')
 	categories.forEach((s)=>{
 		il.insertAdjacentHTML('beforeEnd', `
-					<li>${s.name}</li>`
+					<li><a href="" class="category" id="${c.id}">${s.name}</a></li>`
 		)
 	}
 	)
