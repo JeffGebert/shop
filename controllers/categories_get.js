@@ -2,7 +2,7 @@
 const db = require('./db.js')
 
 module.exports = (req, res) =>{
-	db.query('SELECT name FROM categories', (err, result)=> {
+	db.query('Select * From categories', (err, result)=> {
 		if (err) {
 			console.log('err',err)
 		}else{
