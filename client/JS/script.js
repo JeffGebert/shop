@@ -72,10 +72,9 @@ window.onload=() =>{
 				let products_ui = document.getElementById('products')
 
 				//clear the products
-				products_ui.inner_html=''
+				products_ui.innerHTML=''
 
 				if (res.data.length) {
-					console.log('yes mother fucker i have length')
 
 					products.forEach((p)=>{
 						products_ui.insertAdjacentHTML('beforeEnd', `
@@ -92,7 +91,7 @@ window.onload=() =>{
 									<a href="#" class="button">shop now</a>
 								</div>
 							</div>
-						</div>)
+						</div>
 						`)
 					})
 				} else {
